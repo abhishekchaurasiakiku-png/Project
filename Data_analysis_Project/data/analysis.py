@@ -14,17 +14,19 @@ print("\n Average Salary:",average_salary)
 
 
 # bar chart 
-plt.bar(df["Name"],df["salary"])
+bar_colors = ["cyan", "magenta", "gold", "lime", "orange"]
+plt.barh(df["Name"], df["salary"], color=bar_colors)
 
 plt.title("Salary of Employees:")
 plt.xlabel("Name")
 plt.ylabel("salary")
-plt.savefig ("bar_chart.png")
+plt.savefig("bar_chart.png")
 plt.show()
 
 # Scatter Plot
 plt.figure(figsize=(6,4))
-plt.scatter(df["Age"],df["salary"])
+plt.scatter(df["Age"], df["salary"], color="cyan", s=80)
+plt.plot(df["Age"], df["salary"], color="cyan", linestyle="-.", linewidth=1)
 
 plt.title("Age Vs Salary")
 
@@ -36,6 +38,7 @@ plt.savefig("Scatte_ralation.png")
 
 plt.show()
 
+# heatmap plot
 import numpy as np
 correlation = df[["Age","salary"]].corr()
 
@@ -50,5 +53,15 @@ plt.title("Correlation HeatMap")
 plt.savefig("Correlation_Heatmap.png")
 
 plt.show()
+
+# pie chart
+plt.figure(figsize=(6,6))
+explode = [0.1, 0, 0, 0, 0]
+plt.pie(df["salary"], labels=df["Name"], autopct="%.0f%%", startangle=90, explode=explode,shadow=True, colors=["cyan", "magenta", "gold", "lime", "orange"])
+plt.title("Salary Distribution by Employee")
+plt.savefig("pie_chart.png")
+plt.show()
+
+
 
 
